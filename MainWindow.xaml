@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:COVID_19_LFT_Logging_System"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Log New Tests" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Height="197" VerticalAlignment="Center" Width="380"/>
+        <Button Content="Output to Excel Spreadsheet" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Height="197" VerticalAlignment="Center" Width="380"/>
+        <Button Content="Browse Test Patients" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="197" Width="380"/>
+
 
     </Grid>
 </Window>
