@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COVID_19_LFT_Logging_System"
         mc:Ignorable="d"
-        Title="LogTestWindow" Height="450" Width="800">
+        Title="Log New Test" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Margin="151,35,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13.9" Height="26" VerticalContentAlignment="Center"/>
+                <DatePicker Margin="151,66,129,0" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center"/>
+                <CheckBox Content="?Any symptoms" Margin="10,97,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" Padding="5,5,5,5" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="156"/>
+                <Label Content="New Test" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FF4C4B63" Foreground="White" Height="30" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Semibold"/>
+                <Label Content="Barcode Number" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                <Label Content="Date and Time of Test" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="txtTestTime" HorizontalAlignment="Right" Height="26" Margin="0,66,51,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" FontSize="14" VerticalContentAlignment="Center"/>
+                <DatePicker Margin="151,128,130,0" VerticalAlignment="Top" FontSize="14" Height="26"/>
+                <Label Content="When did they start?" HorizontalAlignment="Left" Height="26" Margin="10,128,0,0" VerticalAlignment="Top" Width="125" VerticalContentAlignment="Center"/>
+                <ListBox x:Name="lstPatients" Grid.Row="1" HorizontalContentAlignment="Left">
+                    <ListBoxItem Content="Item 1"/>
+                    <ListBoxItem Content="Item 2"/>
+                </ListBox>
+                <TextBox Margin="10,0,10,10" TextWrapping="Wrap" Height="30" VerticalAlignment="Bottom" FontSize="16"/>
+            </Grid>
+        </Grid>
+
+
     </Grid>
 </Window>
