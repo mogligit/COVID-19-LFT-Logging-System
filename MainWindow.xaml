@@ -5,20 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COVID_19_LFT_Logging_System"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid ShowGridLines="True">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Log New Tests" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Height="197" VerticalAlignment="Center" Width="380"/>
-        <Button Content="Output to Excel Spreadsheet" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Height="197" VerticalAlignment="Center" Width="380"/>
-        <Button Content="Browse Test Patients" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="197" Width="380"/>
+        Title="MainWindow" Height="500" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid Margin="0,0,0,30">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnLogTests" Content="Log New Tests" HorizontalAlignment="Center" Height="197" VerticalAlignment="Center" Width="380" Click="btnLogTests_Click"/>
+            <Button x:Name="btnOutput" Content="Output to Excel Spreadsheet" Grid.Column="1" HorizontalAlignment="Center" Height="197" VerticalAlignment="Center" Width="380" Click="btnOutput_Click"/>
+            <Button x:Name="btnBrowseData" Content="Browse Test Patients" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="197" Width="380" Click="btnBrowseData_Click"/>
+            
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Bottom" Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblDBStatus" Content="Label" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-
+        </Grid>
+        
     </Grid>
+
 </Window>

@@ -24,5 +24,40 @@ namespace COVID_19_LFT_Logging_System
         {
             InitializeComponent();
         }
+
+        // Test connection to database at load up
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Database.Connect();
+                lblDBStatus.Content = "Database Online";
+                lblDBStatus.Background = new SolidColorBrush(Color.FromRgb(51, 204, 51));
+
+            }
+            catch
+            {
+                lblDBStatus.Content = "Database Error";
+                lblDBStatus.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                // Prompt for new database or alternative one
+                MessageBox.Show("Database could not be found.");
+            }
+            
+        }
+
+        private void btnLogTests_Click(object sender, RoutedEventArgs e)
+        {
+            (new LogTestWindow()).Show();
+        }
+
+        private void btnOutput_Click(object sender, RoutedEventArgs e)
+        {
+            // Open Output window
+        }
+
+        private void btnBrowseData_Click(object sender, RoutedEventArgs e)
+        {
+            // Open Browse window
+        }
     }
 }
