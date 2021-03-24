@@ -39,10 +39,10 @@ namespace COVID_19_LFT_Logging_System
             this.emailAddress = emailAddress;
 
         }
-
+        public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string Surname { get => surname; set => surname = value; }
-        public DateTime Dob { get => dob; set => dob = value; }
+        public DateTime DoB { get => dob; set => dob = value; }
         public int GenderId { get => genderId; set => genderId = value; }
         public int EthnicGroup { get => ethnicGroupId; set => ethnicGroupId = value; }
         public string NHSNumber { get => nhsNumber; set => nhsNumber = value; }
@@ -56,13 +56,13 @@ namespace COVID_19_LFT_Logging_System
         public string EmailAddress { get => emailAddress; set => emailAddress = value; }
         public string MobileNumber { get => mobileNumber; set => mobileNumber = value; }
         public int PatientGroupId { get => patientGroupId; set => patientGroupId = value; }
-
+        
         public string GetGender() => Database.GetGender(this.genderId);
         public string GetEthnicGroup() => Database.GetEthnicGroup(this.ethnicGroupId);
         public string GetCountry() => Database.GetCountry(this.countryId);
         public string GetAreaOfWork() => Database.GetAreaOfWork(this.areaOfWorkId);
         public string GetOccupation() => Database.GetOccupation(this.occupationId);
-        public string GetPatientGroup() => Database.GetPatientGroup(this.patientGroupId);
+        public string GetPatientGroupString { get => Database.GetPatientGroup(this.patientGroupId); }
 
     }
 }
