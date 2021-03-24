@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,5 +23,36 @@ namespace COVID_19_LFT_Logging_System
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            List<Patient> patientList = Database.GetPatientList();
+            foreach (Patient patient in patientList)
+            {
+                dataPatients.Items.Add(patient);
+            }
+          
+        }
+
+        private void txtLookup_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string filter = txtLookup.Text.ToUpper();
+
+            ICollectionView cv = CollectionViewSource.GetDefaultView(dataPatients.Items);
+
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                cv.Filter = o =>
+                {
+                    Patient p = (Patient) o;
+                    return (p.FirstName.ToUpper().Contains(filter) || p.Surname.ToUpper().Contains(filter));
+                };
+            }
+            
+
+        }
+
     }
 }

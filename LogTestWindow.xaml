@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COVID_19_LFT_Logging_System"
         mc:Ignorable="d"
-        Title="Log New Test" Height="450" Width="800">
+        Title="Log New Test" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -26,12 +26,19 @@
                 <TextBox x:Name="txtTestTime" HorizontalAlignment="Right" Height="26" Margin="0,66,51,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" FontSize="14" VerticalContentAlignment="Center"/>
                 <DatePicker Margin="151,128,130,0" VerticalAlignment="Top" FontSize="14" Height="26"/>
                 <Label Content="When did they start?" HorizontalAlignment="Left" Height="26" Margin="10,128,0,0" VerticalAlignment="Top" Width="125" VerticalContentAlignment="Center"/>
-                <ListBox x:Name="lstPatients" Grid.Row="1" HorizontalContentAlignment="Left">
-                    <ListBoxItem Content="Item 1"/>
-                    <ListBoxItem Content="Item 2"/>
-                </ListBox>
-                <TextBox Margin="10,0,10,10" TextWrapping="Wrap" Height="30" VerticalAlignment="Bottom" FontSize="16"/>
+                <TextBox x:Name="txtLookup" Margin="65,0,10,10" TextWrapping="Wrap" Height="30" VerticalAlignment="Bottom" FontSize="16" TextChanged="txtLookup_TextChanged"/>
+                <Label Content="Lookup" HorizontalAlignment="Left" Margin="10,0,0,12" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom"/>
+                <DataGrid x:Name="dataPatients" ItemsSource="{Binding Patient}" Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" IsTextSearchEnabled="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="PatientID" Visibility="Hidden" Binding="{Binding Path=ID}"/>
+                        <DataGridTextColumn Header="Group" Binding="{Binding Path=Group}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Surname" Binding="{Binding Path=Surname}"/>
+                        <DataGridTextColumn Header="DoB" Binding="{Binding Path=DoB}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
+            <Label x:Name="lblPatientSelected" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="125,103,0,0" VerticalAlignment="Top"/>
         </Grid>
 
 
