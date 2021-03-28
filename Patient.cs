@@ -57,12 +57,12 @@ namespace COVID_19_LFT_Logging_System
         public string MobileNumber { get => mobileNumber; set => mobileNumber = value; }
         public int PatientGroupId { get => patientGroupId; set => patientGroupId = value; }
         
-        public string GetGender() => Database.GetGender(this.genderId);
-        public string GetEthnicGroup() => Database.GetEthnicGroup(this.ethnicGroupId);
-        public string GetCountry() => Database.GetCountry(this.countryId);
-        public string GetAreaOfWork() => Database.GetAreaOfWork(this.areaOfWorkId);
-        public string GetOccupation() => Database.GetOccupation(this.occupationId);
-        public string GetPatientGroupString { get => Database.GetPatientGroup(this.patientGroupId); }
+        public string GetGender() => Database.GetGenderFromId(this.genderId);
+        public string GetEthnicGroup() => Database.GetEthnicGroupFromId(this.ethnicGroupId);
+        public string GetCountry() => Database.GetCountryFromId(this.countryId);
+        public string GetAreaOfWork() => Database.GetAreaOfWorkFromId(this.areaOfWorkId);
+        public string GetOccupation() => Database.GetOccupationFromId(this.occupationId);
+        public string GetPatientGroupString { get => Database.GetPatientGroupFromId(this.patientGroupId); }
 
     }
 }
