@@ -19,7 +19,7 @@
                 </Grid.RowDefinitions>
                 <TextBox x:Name="txtBarcodeNumber" Margin="151,35,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center"/>
                 <DatePicker x:Name="dateTestDate" Margin="151,66,129,0" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center" BorderBrush="#FFABADB3"/>
-                <CheckBox x:Name="chkSymptoms" Content="" Margin="150,97,0,0" VerticalAlignment="Top" FlowDirection="LeftToRight" Padding="5,5,5,5" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="16" Checked="chkSymptoms_Changed" Unchecked="chkSymptoms_Changed" BorderThickness="1,1,1,1" Height="26"/>
+                <CheckBox x:Name="chkSymptoms" Content="" Margin="150,97,0,0" VerticalAlignment="Top" FlowDirection="LeftToRight" Padding="5,5,5,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="16" Checked="chkSymptoms_Changed" Unchecked="chkSymptoms_Changed" BorderThickness="1,1,1,1" Height="26"/>
                 <Label Content="New Test" Background="#FF4C4B63" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Semibold" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
                 <Label Content="Barcode Number" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
                 <Label Content="Date and Time of Test" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
@@ -30,7 +30,7 @@
                 </Grid>
                 <TextBox x:Name="txtLookup" Margin="65,0,10,10" TextWrapping="Wrap" Height="30" VerticalAlignment="Bottom" FontSize="16" TextChanged="txtLookup_TextChanged"/>
                 <Label Content="Lookup" HorizontalAlignment="Left" Margin="10,0,0,12" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom"/>
-                <DataGrid x:Name="dataPatients" ItemsSource="{Binding Patient}" Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" IsTextSearchEnabled="True" SelectionChanged="dataPatients_SelectionChanged" SelectionMode="Single" HorizontalScrollBarVisibility="Disabled">
+                <DataGrid x:Name="dataPatients" ItemsSource="{Binding Patient}" Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" SelectionChanged="dataPatients_SelectionChanged" SelectionMode="Single" HorizontalScrollBarVisibility="Disabled" IsTextSearchEnabled="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="PatientID" Visibility="Hidden" Binding="{Binding Path=Id}"/>
                         <DataGridTextColumn Header="Group" Binding="{Binding Path=GetPatientGroupString}"/>
@@ -40,6 +40,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label Content="Any symptoms?" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
+
             </Grid>
             <TextBox x:Name="txtFirstName" Grid.Column="1" HorizontalAlignment="Left" Margin="78,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBox x:Name="txtSurname" Grid.Column="1" HorizontalAlignment="Left" Margin="233,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" VerticalContentAlignment="Center" Height="26" FontSize="14"/>
@@ -67,12 +68,12 @@
             <TextBox x:Name="txtPostcode" Grid.Column="1" HorizontalAlignment="Left" Margin="73,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" Height="26" VerticalContentAlignment="Center" FontSize="14"/>
             <Label Content="Country" Grid.Column="1" HorizontalAlignment="Left" Margin="139,165,0,0" VerticalAlignment="Top" Height="26"/>
             <ComboBox x:Name="cmbCountry" Grid.Column="1" HorizontalAlignment="Left" Margin="196,165,0,0" VerticalAlignment="Top" Width="150" IsEditable="True" Height="26" VerticalContentAlignment="Center" FontSize="14"/>
-            <CheckBox x:Name="chkCurrentlyInWork" Content="" Margin="121,211,263,0" VerticalAlignment="Top" Width="16" Height="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Checked="chkCurrentlyInWork_Changed" Unchecked="chkCurrentlyInWork_Changed"/>
             <Label Content="Currently in work?" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,211,0,0"/>
+            <CheckBox x:Name="chkCurrentlyInWork" Grid.Column="1" Content="" Margin="121,211,0,0" VerticalAlignment="Top" FlowDirection="LeftToRight" Padding="5,5,5,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="16" Checked="chkCurrentlyInWork_Changed" Unchecked="chkCurrentlyInWork_Changed" BorderThickness="1,1,1,1" Height="26"/>
             <Separator Grid.Column="1" Margin="5,196,5,0" VerticalAlignment="Top" Height="10"/>
             <Grid x:Name="gridWorkDetails" Grid.Column="1" HorizontalAlignment="Center" Height="88" Margin="0,211,0,0" VerticalAlignment="Top" Width="380" Visibility="Visible">
-                <Label Content="Employer" HorizontalAlignment="Left" Margin="132,0,0,0" VerticalAlignment="Top" Height="26"/>
-                <TextBox x:Name="txtEmployer" HorizontalAlignment="Left" Margin="197,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Content="Employer" HorizontalAlignment="Left" Margin="145,0,0,0" VerticalAlignment="Top" Height="26"/>
+                <TextBox x:Name="txtEmployer" HorizontalAlignment="Left" Margin="210,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Height="26" FontSize="14" VerticalContentAlignment="Center"/>
                 <Label Content="Area of work" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26"/>
                 <ComboBox x:Name="cmbAreaOfWork" HorizontalAlignment="Left" Margin="82,0,0,0" VerticalAlignment="Center" Width="298" Height="26" FontSize="14" IsEditable="True" VerticalContentAlignment="Center"/>
                 <Label Content="Occupation" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Height="26"/>
