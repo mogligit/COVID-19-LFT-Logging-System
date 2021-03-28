@@ -44,7 +44,7 @@ namespace COVID_19_LFT_Logging_System
         public string Surname { get => surname; set => surname = value; }
         public DateTime DoB { get => dob; set => dob = value; }
         public int GenderId { get => genderId; set => genderId = value; }
-        public int EthnicGroup { get => ethnicGroupId; set => ethnicGroupId = value; }
+        public int EthnicGroupId { get => ethnicGroupId; set => ethnicGroupId = value; }
         public string NHSNumber { get => nhsNumber; set => nhsNumber = value; }
         public int CountryId { get => countryId; set => countryId = value; }
         public string Postcode { get => postcode; set => postcode = value; }
