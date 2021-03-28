@@ -17,7 +17,7 @@ namespace COVID_19_LFT_Logging_System
             conn = new SqlConnection(connectionString);
             conn.Open();
         }
-        private static SqlDataReader NonQuery(string query, params string[] parameters)
+        private static SqlDataReader Query(string query, params string[] parameters)
         {
             SqlCommand command = conn.CreateCommand();
             command.CommandText = query;
@@ -33,7 +33,7 @@ namespace COVID_19_LFT_Logging_System
         {
             List<Patient> patients = new List<Patient>();
 
-            using (SqlDataReader r = NonQuery("SELECT PatientID, FirstName, Surname, DateOfBirth, GenderID, EthnicGroupID, NHSNumber, CountryID, Postcode, Address, CurrentlyInWork, AreaOfWorkID, OccupationID, Employer, EmailAddress, MobileNumber, PatientGroupID FROM Patient;")) {
+            using (SqlDataReader r = Query("SELECT PatientID, FirstName, Surname, DateOfBirth, GenderID, EthnicGroupID, NHSNumber, CountryID, Postcode, Address, CurrentlyInWork, AreaOfWorkID, OccupationID, Employer, EmailAddress, MobileNumber, PatientGroupID FROM Patient;")) {
                 while (r.Read())
                 {
                     Patient newOne = new Patient(r.GetString(1), r.GetString(2), r.GetDateTime(3), r.GetInt32(4), r.GetInt32(5), r.GetInt32(7), r.GetString(8), r.GetString(9), r.GetBoolean(10), r.GetString(14));
@@ -52,59 +52,110 @@ namespace COVID_19_LFT_Logging_System
 
             return patients;
         }
-        public static string GetGender(int id)
+        public static List<string> GetGenderList()
         {
-            using SqlDataReader reader = NonQuery("SELECT String FROM Gender WHERE Gender.GenderID = @0;", id.ToString());
-            if (reader.Read())
+            List<string> values = new List<string>();
+
+            using SqlDataReader reader = Query("SELECT GenderID, String FROM Gender ORDER BY GenderID ASC;");
+            while (reader.Read())
             {
-                return reader.GetString(0);
+                // ID becomes index, String becomes value
+                values.Insert(reader.GetInt32(0), reader.GetString(1));
             }
-            throw new ArgumentOutOfRangeException("Gender ID " + id.ToString() + " was not found in the database.");
+
+            return values;
         }
-        public static string GetEthnicGroup(int id)
+        public static List<string> GetEthnicGroupList()
         {
-            using SqlDataReader reader = NonQuery("SELECT String FROM EthnicGroup WHERE EthnicGroup.EthnicGroupID = @0;", id.ToString());
-            if (reader.Read())
+            List<string> values = new List<string>();
+
+            using SqlDataReader reader = Query("SELECT EthnicGroupID, String FROM EthnicGroup ORDER BY EthnicGroupID ASC;");
+            while (reader.Read())
             {
-                return reader.GetString(0);
+                // ID becomes index, String becomes value
+                values.Insert(reader.GetInt32(0), reader.GetString(1));
             }
-            throw new ArgumentOutOfRangeException("EthnicGroup ID " + id.ToString() + " was not found in the database.");
+
+            return values;
         }
-        public static string GetCountry(int id)
+        public static List<string> GetCountryList()
         {
-            using SqlDataReader reader = NonQuery("SELECT String FROM Country WHERE Country.CountryID = @0;", id.ToString());
-            if (reader.Read())
+            List<string> values = new List<string>();
+
+            using SqlDataReader reader = Query("SELECT CountryID, String FROM Country ORDER BY CountryID ASC;");
+            while (reader.Read())
             {
-                return reader.GetString(0);
+                // ID becomes index, String becomes value
+                values.Insert(reader.GetInt32(0), reader.GetString(1));
             }
-            throw new ArgumentOutOfRangeException("Country ID " + id.ToString() + " was not found in the database.");
+
+            return values;
         }
-        public static string GetAreaOfWork(int id)
+        public static List<string> GetAreaOfWorkList()
         {
-            using SqlDataReader reader = NonQuery("SELECT String FROM AreaOfWork WHERE AreaOfWork.AreaOfWorkID = @0;", id.ToString());
-            if (reader.Read())
+            List<string> values = new List<string>();
+
+            using SqlDataReader reader = Query("SELECT AreaOfWorkID, String FROM AreaOfWork ORDER BY AreaOfWorkID ASC;");
+            while (reader.Read())
             {
-                return reader.GetString(0);
+                // ID becomes index, String becomes value
+                values.Insert(reader.GetInt32(0), reader.GetString(1));
             }
-            throw new ArgumentOutOfRangeException("AreaOfWork ID " + id.ToString() + " was not found in the database.");
+
+            return values;
         }
-        public static string GetOccupation(int id)
+        public static List<string> GetOccupationList()
         {
-            using SqlDataReader reader = NonQuery("SELECT String FROM Occupation WHERE Occupation.OccupationID = @0;", id.ToString());
-            if (reader.Read())
+            List<string> values = new List<string>();
+
+            using SqlDataReader reader = Query("SELECT OccupationID, String FROM Occupation ORDER BY OccupationID ASC;");
+            while (reader.Read())
             {
-                return reader.GetString(0);
+                // ID becomes index, String becomes value
+                values.Insert(reader.GetInt32(0), reader.GetString(1));
             }
-            throw new ArgumentOutOfRangeException("Occupation ID " + id.ToString() + " was not found in the database.");
+
+            return values;
         }
-        public static string GetPatientGroup(int id)
+        public static List<string> GetPatientGroupList()
         {
-            using SqlDataReader reader = NonQuery("SELECT PatientGroupName FROM PatientGroup WHERE PatientGroup.PatientGroupID = @0;", id.ToString());
-            if (reader.Read())
+            List<string> values = new List<string>();
+
+            using SqlDataReader reader = Query("SELECT PatientGroupID, PatientGroupName FROM PatientGroup ORDER BY PatientGroupID ASC;");
+            while (reader.Read())
             {
-                return reader.GetString(0);
+                // ID becomes index, String becomes value
+                values.Insert(reader.GetInt32(0), reader.GetString(1));
             }
-            throw new ArgumentOutOfRangeException("PatientGroup ID " + id.ToString() + " was not found in the database.");
+
+            return values;
+        }
+
+
+
+        public static string GetGenderFromId(int id)
+        {
+            return GetGenderList()[id];
+        }
+        public static string GetEthnicGroupFromId(int id)
+        {
+            return GetEthnicGroupList()[id];
+        }
+        public static string GetCountryFromId(int id)
+        {
+            return GetCountryList()[id];
+        }
+        public static string GetAreaOfWorkFromId(int id)
+        {
+            return GetAreaOfWorkList()[id];
+        }
+        public static string GetOccupationFromId(int id)
+        {
+            return GetOccupationList()[id];
+        }
+        public static string GetPatientGroupFromId(int id)
+        {
+            return GetPatientGroupList()[id];
         }
     }
 }
