@@ -21,7 +21,7 @@ namespace COVID_19_LFT_Logging_System
         /// <returns>Returns True if successful, False if not successful.</returns>
         public static bool TryConnect(string dbName)
         {
-            string connectionString = String.Format("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True", Directory.GetCurrentDirectory() + "\\" + dbName + ".mdf");
+            string connectionString = String.Format("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True", dbName + ".mdf");
             conn = new SqlConnection(connectionString);
 
             try

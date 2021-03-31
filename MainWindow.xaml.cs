@@ -33,7 +33,7 @@ namespace COVID_19_LFT_Logging_System
             // check if database exists, and create one
             string workingDir = Directory.GetCurrentDirectory();
             string databasePath = workingDir + "\\TestDB";
-            databasePath = "DeleteDB";
+            databasePath = "C:\\Users\\mogli\\source\\repos\\COVID-19 LFT Logging System\\TestDB";
 
             if (!Database.TryConnect(databasePath))
             {
