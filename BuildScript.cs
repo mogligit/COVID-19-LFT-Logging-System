@@ -1,4 +1,13 @@
-﻿CREATE TABLE [dbo].[Patient] (
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace COVID_19_LFT_Logging_System
+{
+    class BuildScript
+    {
+        public const string DATABASE_BUILD_SCRIPT = @"
+CREATE TABLE [dbo].[Patient] (
     [PatientID]       INT          IDENTITY (1, 1) NOT NULL,
     [FirstName]       TEXT         NOT NULL,
     [Surname]         TEXT         NOT NULL,
@@ -132,3 +141,7 @@ INSERT INTO [dbo].[Occupation] ([OccupationID], [String]) VALUES (11, N'2234 - N
 INSERT INTO [dbo].[Occupation] ([OccupationID], [String]) VALUES (12, N'2235 - Mental health nurses')
 INSERT INTO [dbo].[Occupation] ([OccupationID], [String]) VALUES (13, N'2461 - Social worker')
 INSERT INTO [dbo].[Occupation] ([OccupationID], [String]) VALUES (14, N'0000 - I can''t find my occupation')
+
+";
+    }
+}
