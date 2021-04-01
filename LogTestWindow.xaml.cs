@@ -117,11 +117,11 @@ namespace COVID_19_LFT_Logging_System
         {
             if ((bool) chkSymptoms.IsChecked)
             {
-                gridSymptoms.Visibility = Visibility.Visible;
+                gridSymptoms.IsEnabled = true;
             } 
             else
             {
-                gridSymptoms.Visibility = Visibility.Hidden;
+                gridSymptoms.IsEnabled = false;
             }
         }
 
@@ -129,11 +129,11 @@ namespace COVID_19_LFT_Logging_System
         {
             if ((bool)chkCurrentlyInWork.IsChecked)
             {
-                gridWorkDetails.Visibility = Visibility.Visible;
+                gridWorkDetails.IsEnabled = true;
             }
             else
             {
-                gridWorkDetails.Visibility = Visibility.Hidden;
+                gridWorkDetails.IsEnabled = false;
             }
             
         }
