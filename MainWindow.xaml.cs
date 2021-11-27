@@ -32,13 +32,11 @@ namespace COVID_19_LFT_Logging_System
             
             // check if database exists, and create one
             string workingDir = Directory.GetCurrentDirectory();
-            string databasePath = workingDir + "\\TestDB";
-            databasePath = "C:\\Users\\mogli\\source\\repos\\COVID-19 LFT Logging System\\TestDB";
+            string dbPath = workingDir + "\\TestDB";
+            dbPath = "C:\\Users\\mogli\\source\\repos\\COVID-19 LFT Logging System\\TestDB";
 
-            if (!Database.TryConnect(databasePath))
+            if (Database.TryConnect(dbPath))
             {
-                Database.CreateNewDatabase(databasePath);
-                Database.TryConnect(databasePath);
                 lblDBStatus.Content = "Database Online";
                 lblDBStatus.Background = new SolidColorBrush(Color.FromRgb(51, 204, 51));
             }
@@ -47,6 +45,8 @@ namespace COVID_19_LFT_Logging_System
                 lblDBStatus.Content = "Database Error";
                 lblDBStatus.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 // Prompt for new database or alternative one
+                //Database.CreateNewDatabase(dbPath);
+                //Database.TryConnect(dbPath);
                 MessageBox.Show("Database could not be found.");
             }
                        
