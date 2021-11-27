@@ -9,36 +9,38 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="180"/>
+                <RowDefinition Height="300"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="txtBarcodeNumber" Margin="151,35,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center"/>
-            <DatePicker x:Name="dateTestDate" Margin="151,66,129,0" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center" BorderBrush="#FFABADB3"/>
-            <CheckBox x:Name="chkSymptoms" Content="" Margin="150,97,0,0" VerticalAlignment="Top" FlowDirection="LeftToRight" Padding="5,5,5,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="16" Checked="chkSymptoms_Changed" Unchecked="chkSymptoms_Changed" BorderThickness="1,1,1,1" Height="26"/>
+            <RadioButton x:Name="rdbPCRTest" GroupName="testType" Content="PCR test" HorizontalAlignment="Right" Margin="0,45,130,0" VerticalAlignment="Top" Height="15" Width="63"/>
+            <RadioButton x:Name="rdbLFDTest" GroupName="testType" IsChecked="True" Content="Lateral Flow test" HorizontalAlignment="Left" Margin="130,45,0,0" VerticalAlignment="Top" Height="15" Width="105"/>
+            <TextBox x:Name="txtBarcodeNumber" Margin="150,70,11,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="dateTestDate" Margin="150,101,130,0" VerticalAlignment="Top" FontSize="14" Height="26" VerticalContentAlignment="Center" BorderBrush="#FFABADB3"/>
+            <CheckBox x:Name="chkSymptoms" Content="" Margin="150,132,0,0" VerticalAlignment="Top" FlowDirection="LeftToRight" Padding="5,5,5,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="16" Checked="chkSymptoms_Changed" Unchecked="chkSymptoms_Changed" BorderThickness="1,1,1,1" Height="26"/>
             <Label Content="New Test" Background="#FF4C4B63" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Semibold" Height="30" VerticalAlignment="Top"/>
-            <Label Content="Barcode Number" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26" Width="100"/>
-            <Label Content="Date and Time of Test" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26" Width="125"/>
-            <TextBox x:Name="txtTestTime" HorizontalAlignment="Right" Height="26" Margin="0,66,51,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" FontSize="14" VerticalContentAlignment="Center"/>
-            <Grid x:Name="gridSymptoms" Margin="10,128,130,0" VerticalAlignment="Top" IsEnabled="False" Height="26">
+            <Label Content="Barcode Number" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26" Width="100"/>
+            <Label Content="Date and Time of Test" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26" Width="125"/>
+            <TextBox x:Name="txtTestTime" HorizontalAlignment="Right" Height="26" Margin="0,101,52,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" FontSize="14" VerticalContentAlignment="Center"/>
+            <Grid x:Name="gridSymptoms" Margin="10,163,130,0" IsEnabled="False" Height="26" VerticalAlignment="Top">
                 <DatePicker x:Name="dateSymptoms" Margin="141,0,0,0" VerticalAlignment="Top" FontSize="14" Height="26" Visibility="Visible"/>
                 <Label Content="When did they start?" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="125" VerticalContentAlignment="Center" Visibility="Visible"/>
             </Grid>
 
-            <Label Content="Any symptoms?" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+            <Label Content="Any symptoms?" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
             <TabControl Grid.Row="1">
                 <TabItem Header="Existing Patient">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid x:Name="dataPatients" ItemsSource="{Binding Patient}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" SelectionChanged="dataPatients_SelectionChanged" SelectionMode="Single" HorizontalScrollBarVisibility="Disabled" IsTextSearchEnabled="True" Margin="0,35,0,0">
+                        <DataGrid x:Name="dataPatients" ItemsSource="{Binding Patient}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" SelectionChanged="dataPatients_SelectionChanged" SelectionMode="Single" HorizontalScrollBarVisibility="Disabled" IsTextSearchEnabled="True" Margin="0,40,0,0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="PatientID" Visibility="Hidden" Binding="{Binding Path=Id}"/>
                                 <DataGridTextColumn Header="Group" Binding="{Binding Path=GetPatientGroupString}"/>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Path=FirstName}"/>
                                 <DataGridTextColumn Header="Surname" Binding="{Binding Path=Surname}"/>
-                                <DataGridTextColumn Header="DoB" Binding="{Binding Path=DoB}"/>
+                                <DataGridTextColumn Header="DoB" Binding="{Binding Path=DoB, StringFormat=\{0:dd/MM/yyyy\}}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="txtLookup" Margin="55,0,0,184" TextWrapping="Wrap" Height="30" VerticalAlignment="Top" FontSize="16" TextChanged="txtLookup_TextChanged"/>
-                        <Label Content="Lookup" HorizontalAlignment="Left" Margin="0,0,0,188" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtLookup" Margin="55,5,5,184" TextWrapping="Wrap" Height="30" VerticalAlignment="Top" FontSize="16" TextChanged="txtLookup_TextChanged"/>
+                        <Label Content="Lookup" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalContentAlignment="Center" Height="30" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="New Patient">
@@ -90,6 +92,8 @@
                     </Grid>
                 </TabItem>
             </TabControl>
+
+
 
         </Grid>
 
