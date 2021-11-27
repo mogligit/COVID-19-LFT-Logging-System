@@ -141,5 +141,15 @@ namespace COVID_19_LFT_Logging_System
             }
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -11,6 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="300"/>
                 <RowDefinition/>
+                <RowDefinition Height="46"/>
             </Grid.RowDefinitions>
             <RadioButton x:Name="rdbPCRTest" GroupName="testType" Content="PCR test" HorizontalAlignment="Right" Margin="0,45,130,0" VerticalAlignment="Top" Height="15" Width="63"/>
             <RadioButton x:Name="rdbLFDTest" GroupName="testType" IsChecked="True" Content="Lateral Flow test" HorizontalAlignment="Left" Margin="130,45,0,0" VerticalAlignment="Top" Height="15" Width="105"/>
@@ -92,11 +93,10 @@
                     </Grid>
                 </TabItem>
             </TabControl>
-
+            <Button x:Name="btnSubmit" Content="Submit" Height="26" Margin="390,10,10,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Click="btnSubmit_Click" />
 
 
         </Grid>
-
         <!--<TextBox x:Name="txtFirstName" Grid.Column="1" HorizontalAlignment="Left" Margin="78,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBox x:Name="txtSurname" Grid.Column="1" HorizontalAlignment="Left" Margin="233,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" VerticalContentAlignment="Center" Height="26" FontSize="14"/>
             <Label Content="Full Name" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
