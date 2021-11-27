@@ -62,6 +62,10 @@ namespace COVID_19_LFT_Logging_System
                     return (p.FirstName.ToUpper().Contains(filter) || p.Surname.ToUpper().Contains(filter));
                 };
             }
+            else
+            {
+                cv.Filter = null;
+            }
             
 
         }
