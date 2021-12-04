@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace COVID_19_LFT_Logging_System
 {
@@ -15,7 +17,7 @@ namespace COVID_19_LFT_Logging_System
         private DateTime timestamp;
         private bool contactTesting;
         private bool symptoms;
-        private DateTime symptomsDate; // nullable; only relevant if symptoms is True
+        private DateTime symptomsDate; // DateTime is not nullable but this field can be empty; only relevant if symptoms is True
         private int patientId; // nullable;
 
         public Test(TestType type, string barcode, DateTime timestamp, bool contactTesting, bool symptoms, int patientId)
@@ -25,6 +27,17 @@ namespace COVID_19_LFT_Logging_System
             this.timestamp = timestamp;
             this.contactTesting = contactTesting;
             this.symptoms = symptoms;
+            this.patientId = patientId;
+        }
+
+        public Test(TestType type, string barcode, DateTime timestamp, bool contactTesting, bool symptoms, DateTime symptomsDate, int patientId)
+        {
+            this.type = type;
+            this.barcode = barcode;
+            this.timestamp = timestamp;
+            this.contactTesting = contactTesting;
+            this.symptoms = symptoms;
+            this.symptomsDate = symptomsDate;
             this.patientId = patientId;
         }
 
@@ -38,12 +51,22 @@ namespace COVID_19_LFT_Logging_System
             this.symptoms = symptoms;
         }
 
+        public Test(TestType type, string barcode, DateTime timestamp, bool contactTesting, bool symptoms, DateTime symptomsDate)
+        {
+            this.type = type;
+            this.barcode = barcode;
+            this.timestamp = timestamp;
+            this.contactTesting = contactTesting;
+            this.symptoms = symptoms;
+            this.symptomsDate = symptomsDate;
+        }
+
         public int Id { get => id; set => id = value; }
         public TestType Type { get => type; set => type = value; }
         public string Barcode { get => barcode; set => barcode = value; }
         public DateTime Timestamp { get => timestamp; set => timestamp = value; }
         public bool DailyContactTesting { get => contactTesting; set => contactTesting = value; }
-        public bool HasSymptoms { get => symptoms; set => symptoms = value; }
+        public bool ShowingSymptoms { get => symptoms; set => symptoms = value; }
         public DateTime SymptomsStartDate { get => symptomsDate; set => symptomsDate = value; }
         public int PatientId { get => patientId; set => patientId = value; }
     }
