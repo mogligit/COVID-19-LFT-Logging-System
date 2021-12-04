@@ -94,7 +94,8 @@
                 </TabItem>
             </TabControl>
             <Button x:Name="btnSubmit" Content="Submit" Height="26" Margin="390,10,10,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Click="btnSubmit_Click" Panel.ZIndex="1" />
-            <Label Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#FF9B2828" HorizontalAlignment="Stretch"/>
+            <Label Margin="200,0,0,0" Grid.Row="1" HorizontalContentAlignment="Center" Background="#FF9B2828" Grid.RowSpan="2" Height="46" VerticalAlignment="Bottom"/>
+            <Label x:Name="lblSubmissionStatus" Content="Submit something" Grid.Row="1" Background="#7F000000" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Semibold" Grid.RowSpan="2" HorizontalAlignment="Left" Width="200" Height="46" VerticalAlignment="Bottom"/>
 
 
         </Grid>
