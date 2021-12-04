@@ -35,7 +35,7 @@ namespace COVID_19_LFT_Logging_System
             {
                 return false;
             }
-            
+
         }
         public static void CreateNewDatabase(string dbName)
         {
@@ -50,7 +50,7 @@ namespace COVID_19_LFT_Logging_System
              "LOG ON (NAME = {0}_log, FILENAME = '{2}')", dbName, path, pathLog);
 
             SqlCommand command = new SqlCommand(query, connection);
-   
+
             connection.Open();
             command.ExecuteNonQuery();
 
@@ -68,16 +68,36 @@ namespace COVID_19_LFT_Logging_System
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                command.Parameters.AddWithValue("@" + i.ToString(), parameters[i]);
+                command.Parameters.AddWithValue("@" + (i + 1).ToString(), parameters[i]);
             }
-            
+
             return command.ExecuteReader();
+        }
+        /// <summary>
+        /// Executes a non-query string
+        /// </summary>
+        /// <param name="action">SQL string with placeholders (@1, @2, etc.)</param>
+        /// <param name="parameters">Parameters to be substituted into placeholders</param>
+        /// <returns>Number of lines affected</returns>
+        private static int NonQuery(string action, params object[] parameters)
+        {
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = action;
+
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                command.Parameters.AddWithValue("@" + (i + 1).ToString(), parameters[i]);
+            }
+
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected;
         }
         public static List<Patient> GetPatientList()
         {
             List<Patient> patients = new List<Patient>();
 
-            using (SqlDataReader r = Query("SELECT PatientID, FirstName, Surname, DateOfBirth, GenderID, EthnicGroupID, NHSNumber, CountryID, Postcode, Address, CurrentlyInWork, AreaOfWorkID, OccupationID, Employer, EmailAddress, MobileNumber, PatientGroupID FROM Patient;")) {
+            using (SqlDataReader r = Query("SELECT PatientID, FirstName, Surname, DateOfBirth, GenderID, EthnicGroupID, NHSNumber, CountryID, Postcode, Address, CurrentlyInWork, AreaOfWorkID, OccupationID, Employer, EmailAddress, MobileNumber, PatientGroupID FROM Patient;"))
+            {
                 while (r.Read())
                 {
                     Patient newOne = new Patient(r.GetString(1), r.GetString(2), r.GetDateTime(3), r.GetInt32(4), r.GetInt32(5), r.GetInt32(7), r.GetString(8), r.GetString(9), r.GetBoolean(10), r.GetString(14));
@@ -200,6 +220,24 @@ namespace COVID_19_LFT_Logging_System
         public static string GetPatientGroupFromId(int id)
         {
             return GetPatientGroupList()[id];
+        }
+
+        public static bool SubmitNewTest(Test test)
+        {
+            // to do: only insert if symptoms start date or patientID have information, otherwise null error
+            if (test.ShowingSymptoms)
+            {
+                NonQuery("INSERT INTO Test (TestType, Barcode, DateOfTest, DailyContactTesting, ShowingSymptoms, SymptomsStartDate, PatientID) VALUES (@1, @2, @3, @4, @5, @6, @7);",
+                                    test.Type.ToString(), test.Barcode, test.Timestamp, test.DailyContactTesting, test.ShowingSymptoms, test.SymptomsStartDate, test.PatientId);
+                return true;
+            }
+            else
+            {
+                NonQuery("INSERT INTO Test (TestType, Barcode, DateOfTest, DailyContactTesting, ShowingSymptoms, PatientID) VALUES (@1, @2, @3, @4, @5, @6);",
+                                    test.Type.ToString(), test.Barcode, test.Timestamp, test.DailyContactTesting, test.ShowingSymptoms, test.PatientId);
+                return true;
+            }
+
         }
     }
 }

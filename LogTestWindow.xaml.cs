@@ -19,6 +19,7 @@ namespace COVID_19_LFT_Logging_System
     /// </summary>
     public partial class LogTestWindow : Window
     {
+        private Patient SelectedPatient;
         public LogTestWindow()
         {
             InitializeComponent();
@@ -72,27 +73,28 @@ namespace COVID_19_LFT_Logging_System
 
         private void dataPatients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Patient selected = (Patient) e.AddedItems[0];
+            // Get selected Patient object
+            SelectedPatient = (Patient) e.AddedItems[0];
 
             // Populate fields
-            txtFirstName.Text = selected.FirstName;
-            txtSurname.Text = selected.Surname;
-            dateDoB.SelectedDate = selected.DoB;
-            cmbGender.SelectedIndex = selected.GenderId;
-            cmbEthnicity.SelectedIndex = selected.EthnicGroupId;
-            txtNhsNumber.Text = selected.NHSNumber;
-            txtAddress.Text = selected.Address;
-            txtPostcode.Text = selected.Postcode;
-            cmbCountry.SelectedIndex = selected.CountryId;
+            txtFirstName.Text = SelectedPatient.FirstName;
+            txtSurname.Text = SelectedPatient.Surname;
+            dateDoB.SelectedDate = SelectedPatient.DoB;
+            cmbGender.SelectedIndex = SelectedPatient.GenderId;
+            cmbEthnicity.SelectedIndex = SelectedPatient.EthnicGroupId;
+            txtNhsNumber.Text = SelectedPatient.NHSNumber;
+            txtAddress.Text = SelectedPatient.Address;
+            txtPostcode.Text = SelectedPatient.Postcode;
+            cmbCountry.SelectedIndex = SelectedPatient.CountryId;
 
             //
 
-            chkCurrentlyInWork.IsChecked = selected.CurrentlyInWork;
+            chkCurrentlyInWork.IsChecked = SelectedPatient.CurrentlyInWork;
             
             //
 
-            txtEmailAddress.Text = selected.EmailAddress;
-            txtMobileNumber.Text = selected.MobileNumber;
+            txtEmailAddress.Text = SelectedPatient.EmailAddress;
+            txtMobileNumber.Text = SelectedPatient.MobileNumber;
 
 
         }
@@ -142,14 +144,46 @@ namespace COVID_19_LFT_Logging_System
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            // Create Test object
 
+            TestType currentTestType = new TestType();
+            if (rdbLFDTest.IsChecked == true)
+            {
+                currentTestType = TestType.LFD;
+            }
+            else if (rdbPCRTest.IsChecked == true)
+            {
+                currentTestType = TestType.PCR;
+            }
+
+            string barcode = txtBarcodeNumber.Text;
+            DateTime now = DateTime.Now;
+            // NO CURRENT OPTION FOR THIS - DEFAULT TO FALSE
+            bool contactTesting = false;
+            //
+            bool symptoms = (bool) chkSymptoms.IsChecked;
+            int patientId = SelectedPatient.Id;
+            
+
+            Test newTest = new Test(currentTestType, barcode, now, contactTesting, symptoms, patientId);
+
+            if (symptoms && dateSymptoms.SelectedDate != null)
+            {
+                newTest.SymptomsStartDate = (DateTime) dateSymptoms.SelectedDate;
+            }
+
+            if (Database.SubmitNewTest(newTest))
+            {
+                lblSubmissionStatus.Content = newTest.Barcode + " submitted successfully";
+                lblSubmissionStatus.Background = new SolidColorBrush(Color.FromRgb(0, 200, 0));
+            }
+            else
+            {
+                lblSubmissionStatus.Content = newTest.Barcode + " not submitted";
+                lblSubmissionStatus.Background = new SolidColorBrush(Color.FromRgb(200, 0, 0));
+            }
         }
     }
 }
