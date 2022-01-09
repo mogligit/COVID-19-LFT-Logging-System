@@ -51,7 +51,7 @@
                 <DatePicker x:Name="dateSymptoms" Margin="141,0,0,0" VerticalAlignment="Top" FontSize="14" Height="26" Visibility="Visible"/>
                 <Label Content="When did they start?" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="125" VerticalContentAlignment="Center" Visibility="Visible"/>
             </Grid>
-            <Button x:Name="btnNow" Content="Now" HorizontalAlignment="Right" Margin="0,101,11,0" VerticalAlignment="Top" Height="26" Width="56" FontWeight="Bold" />
+            <Button x:Name="btnNow" Content="Now" HorizontalAlignment="Right" Margin="0,101,11,0" VerticalAlignment="Top" Height="26" Width="56" FontWeight="Bold" Click="btnNow_Click" />
             <Label Content="Any symptoms?" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
             <TabControl Margin="0,206,0,0" Grid.RowSpan="2">
                 <TabItem Header="Patient lookup">

@@ -187,5 +187,11 @@ namespace COVID_19_LFT_Logging_System
             }
         }
 
+        private void btnNow_Click(object sender, RoutedEventArgs e)
+        {
+            dateTestDate.SelectedDate = DateTime.Today;
+            string timeNow = DateTime.Now.ToString("h tt").ToLower();
+            cmbTestTime.Text = timeNow;
+        }
     }
 }
