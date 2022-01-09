@@ -69,7 +69,7 @@
                         <Label Content="Lookup" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalContentAlignment="Center" Height="30" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="New Patient">
+                <TabItem Header="Details">
                     <Grid Background="#FFE5E5E5">
                         <TextBox x:Name="txtFirstName" Margin="78,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Width="150"/>
                         <TextBox x:Name="txtSurname" Margin="233,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26" FontSize="14"/>
