@@ -34,10 +34,11 @@ namespace COVID_19_LFT_Logging_System
         private void PopulatePatientList()
         {
             List<Patient> patientList = Database.GetPatientList();
-            foreach (Patient patient in patientList)
-            {
-                dataPatients.Items.Add(patient);
-            }
+            //foreach (Patient patient in patientList)
+            //{
+            //    dataPatients.Items.Add(patient);
+            //}
+            dataPatients.ItemsSource = patientList;
         }
         private void PopulateComboBoxes()
         {
@@ -185,5 +186,6 @@ namespace COVID_19_LFT_Logging_System
                 lblSubmissionStatus.Background = new SolidColorBrush(Color.FromRgb(200, 0, 0));
             }
         }
+
     }
 }
