@@ -20,6 +20,7 @@ namespace COVID_19_LFT_Logging_System
     public partial class LogTestWindow : Window
     {
         private Patient SelectedPatient;
+        private bool openSubmission;
         public LogTestWindow()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace COVID_19_LFT_Logging_System
         {
             PopulatePatientList();
             PopulateComboBoxes();
+            openSubmission = false;
         }
 
         private void PopulatePatientList()
@@ -97,7 +99,9 @@ namespace COVID_19_LFT_Logging_System
             txtEmailAddress.Text = SelectedPatient.EmailAddress;
             txtMobileNumber.Text = SelectedPatient.MobileNumber;
 
+            // Call form changed for status label
 
+            ChangeStatusLabelToNewSubmission();
         }
 
         // Experimental as-you-go validation (not currently working)
@@ -130,6 +134,9 @@ namespace COVID_19_LFT_Logging_System
             {
                 gridSymptoms.IsEnabled = false;
             }
+
+
+            ChangeStatusLabelToNewSubmission();
         }
 
         private void chkCurrentlyInWork_Changed(object sender, RoutedEventArgs e)
@@ -193,5 +200,33 @@ namespace COVID_19_LFT_Logging_System
             string timeNow = DateTime.Now.ToString("h tt").ToLower();
             cmbTestTime.Text = timeNow;
         }
+
+        // Changes status label to the "New Submission" state
+
+        private void formChanged(object sender, TextChangedEventArgs e)
+        {
+
+            ChangeStatusLabelToNewSubmission();
+        }
+
+        private void formChanged(object sender, RoutedEventArgs e)
+        {
+
+            ChangeStatusLabelToNewSubmission();
+        }
+
+        private void formChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            ChangeStatusLabelToNewSubmission();
+        }
+
+        private void ChangeStatusLabelToNewSubmission()
+        {
+            openSubmission = true;
+            lblSubmissionStatus.Background = new SolidColorBrush(Color.FromRgb(255, 150, 43));
+            lblSubmissionStatus.Content = "New submission";
+        }
+
     }
 }
