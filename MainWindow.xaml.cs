@@ -65,6 +65,7 @@ namespace COVID_19_LFT_Logging_System
         private void btnBrowseData_Click(object sender, RoutedEventArgs e)
         {
             // Open Browse window
+            (new DataQueryWindow()).Show();
         }
     }
 }
