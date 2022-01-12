@@ -15,9 +15,9 @@ namespace COVID_19_LFT_Logging_System
     /// <summary>
     /// Interaction logic for DataQuery.xaml
     /// </summary>
-    public partial class DataQuery : Window
+    public partial class DataQueryWindow : Window
     {
-        public DataQuery()
+        public DataQueryWindow()
         {
             InitializeComponent();
         }
